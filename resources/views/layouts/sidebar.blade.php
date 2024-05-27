@@ -42,6 +42,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('user-list') }}" class="nav-link">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            User
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();">
