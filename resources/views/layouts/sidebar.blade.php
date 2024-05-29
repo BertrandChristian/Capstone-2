@@ -42,6 +42,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('beasiswa_detail-list') }}" class="nav-link">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Beasiswa Detail
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('user-list') }}" class="nav-link">
                         <i class="nav-icon far fa-user"></i>
                         <p>

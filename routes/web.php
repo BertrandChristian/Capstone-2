@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-delete/{user}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('user-delete');
     Route::get('/beasiswa', [\App\Http\Controllers\BeasiswaController::class, 'index'])->name('beasiswa-list');
     Route::get('/b-create', [\App\Http\Controllers\BeasiswaController::class, 'create'])->name('beasiswa-create');
+    Route::get('/beasiswa_detail', [\App\Http\Controllers\BeasiswaDetailController::class, 'index'])->name('beasiswa_detail-list');
+    Route::get('/bd-create', [\App\Http\Controllers\BeasiswaDetailController::class, 'create'])->name('beasiswa_detail-create');
 });
 
 require __DIR__.'/auth.php';
