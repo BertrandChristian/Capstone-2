@@ -27,7 +27,7 @@ class BeasiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('beasiswa.create');
     }
 
     /**
