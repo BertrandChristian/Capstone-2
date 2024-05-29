@@ -18,6 +18,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/user', [\App\Http\Controllers\UserController::class, 'index'])->name('user-list');
     Route::get('/beasiswa', [\App\Http\Controllers\BeasiswaController::class, 'index'])->name('beasiswa-list');
+    Route::get('/user/create', [\App\Http\Controllers\UserController::class, 'create'])->name('user-create');
+    Route::post('/user/create', [\App\Http\Controllers\UserController::class, 'store'])->name('user-store');
+    Route::get('/user-edit/{user}', [\App\Http\Controllers\UserController::class, 'edit'])->name('user-edit');
+    Route::post('/user-edit/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name('user-update');
+    Route::get('/user-delete/{user}', [\App\Http\Controllers\UserController::class, 'destroy'])->name('user-delete');
 });
 
 require __DIR__.'/auth.php';
