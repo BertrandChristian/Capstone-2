@@ -35,7 +35,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <form action="{{ route('beasiswa-create') }}">
+                    <form action="{{ route('periodebs-create') }}" method="get">
                         <button type="submit" class="btn btn-primary">Tambah Periode Beasiswa</button>
                     </form>
 
@@ -47,6 +47,7 @@
                             <th>ID Beasiswa</th>
                             <th>Periode Awal Beasiswa</th>
                             <th>Periode Akhir Beasiswa</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,19 +57,18 @@
                                 <td>{{ $b->periode_awal_beasiswa }}</td>
                                 <td>{{ $b->periode_akhir_beasiswa }}</td>
                                 <td>
-                                    <a href="" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
-                                    <a href="" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
+                                    <a href="{{ route('periodebs-edit', ['id' => $b->id_beasiswa]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('periodebs-delete', ['id' => $b->id_beasiswa]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>
                                 </td>
-
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                    </div>
                 </div>
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content -->
+            </div>
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
     </div>
 @endsection
 
@@ -81,7 +81,7 @@
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script>
-        $('#table-user').DataTable();
+        $('#table-mk').DataTable();
     </script>
     <script src="{{ asset('plugins/sweetalert2/sweetalert2.js') }}"></script>
 @endsection

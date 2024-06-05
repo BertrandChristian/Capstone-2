@@ -4,16 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Beasiswa;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use function Laravel\Prompts\alert;
 
 class BeasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Beasiswa $beasiswa
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function index()
     {
@@ -35,38 +30,50 @@ class BeasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $validatedData = $request->validate([
+            'id_beasiswa' => 'required|int',
+            'periode_awal_beasiswa' => 'required|date',
+            'periode_akhir_beasiswa' => 'required|date',
+        ]);
+        $periodebs = new Beasiswa($validatedData);
+        $periodebs->save();
+        return redirect()->route('periodebs-list');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $bs = Beasiswa::findOrFail($id);
+        return view('beasiswa.edit', [
+            'bs' => $bs,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData  = $request->validate([
+            'id_beasiswa' => 'required|int',
+            'periode_awal_beasiswa' => 'required|date',
+            'periode_akhir_beasiswa' => 'required|date',
+        ]);
+        $periodebs = Beasiswa::findOrFail($id);
+        $periodebs->update($validatedData);
+        return redirect()->route('periodebs-list');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $periodebs = Beasiswa::findOrFail($id);
+        $periodebs->delete();
+        return redirect()->back();
     }
 }
+

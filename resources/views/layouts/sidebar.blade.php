@@ -34,10 +34,10 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{ route('beasiswa-list') }}" class="nav-link">
+                    <a href="{{ route('periodebs-list') }}" class="nav-link">
                             <i class="nav-icon far fa-user"></i>
                         <p>
-                            Beasiswa
+                            Periode Beasiswa
                         </p>
                     </a>
                 </li>
