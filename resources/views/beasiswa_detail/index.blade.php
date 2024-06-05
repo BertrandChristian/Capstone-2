@@ -49,13 +49,14 @@
                             <th>ID Beasiswa</th>
                             <th>Jenis Beasiswa</th>
                             <th>Dokumen Beasiswa</th>
+                            <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($bds as $bd)
                             <tr>
-                                <td>{{ $bd->id_beasiswa }}</td>
-                                <td>{{ $bd->user_id_user }}</td>
+                                <td>{{ $bd->id_beasiswa_detail }}</td>
+                                <td>{{ $bd->users_id }}</td>
                                 <td>{{ $bd->beasiswa_id_beasiswa }}</td>
                                 <td>{{ $bd->jenis_beasiswa }}</td>
                                 <td>{{ $bd->dokumen_beasiswa }}</td>

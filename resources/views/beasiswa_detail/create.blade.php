@@ -32,12 +32,38 @@
                             </div>
                         @endif
 
-                        <form method="post" action="">
+                        <form method="post" action="{{ route('beasiswa_detail-store') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="beasiswa-detail-id">ID</label>
                                 <input type="text" class="form-control" id="beasiswa-detail-id"
                                        placeholder="Contoh: Text" name="id_beasiswa_detail" required autofocus
+                                       maxlength="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="user-id" class="col-form-label col-sm-2">ID User</label>
+                                <div class="col-sm-8">
+                                    <select id="user-id" name="users_id" required class="form-control select2">
+                                        @foreach($users as $user)
+                                            <option name="id" value="{{ $user->id }}">{{ $user->id }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="beasiswa-id" class="col-form-label col-sm-2">ID Beasiswa</label>
+                                    <div class="col-sm-8">
+                                        <select id="beasiswa-id" name="beasiswa_id_beasiswa" required class="form-control select2">
+                                            @foreach($bs as $b)
+                                                <option name="id_beasiswa" value="{{ $b->id_beasiswa }}">{{ $b->id_beasiswa }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="beasiswa-detail-jenis">Jenis</label>
+                                <input type="text" class="form-control" id="beasiswa-detail-jenis"
+                                       placeholder="Contoh: Text" name="jenis_beasiswa" required autofocus
                                        maxlength="100">
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>

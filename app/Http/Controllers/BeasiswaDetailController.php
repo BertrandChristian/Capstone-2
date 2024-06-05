@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Beasiswa;
 use App\Models\BeasiswaDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use function Laravel\Prompts\alert;
@@ -28,7 +29,10 @@ class BeasiswaDetailController extends Controller
      */
     public function create()
     {
-        return view('beasiswa_detail.create');
+        return view('beasiswa_detail.create', [
+            'users' => User::all(),
+            'bs' => Beasiswa::all(),
+        ]);
     }
 
     /**
@@ -36,7 +40,18 @@ class BeasiswaDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData  = validator($request->all(), [
+            'id_beasiswa_detail' => 'required|int',
+            'users_id' => '',
+            'beasiswa_id_beasiswa' => 'required',
+            'jenis_beasiswa' => 'required|string',
+        ])->validate();
+        $data = $request->all();
+        $beasiswa = new BeasiswaDetail($validatedData);
+        $beasiswa->users_id = $data['users_id'];
+        $beasiswa->beasiswa_id_beasiswa = $data['beasiswa_id_beasiswa'];
+        $beasiswa -> save();
+        return redirect()->route('beasiswa_detail-list');
     }
 
     /**

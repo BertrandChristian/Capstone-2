@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class BeasiswaDetail extends Model
 {
-    protected $table = 'beasiswa';
+    protected $table = 'beasiswa_detail';
 
     use HasFactory;
 
     protected $fillable = [
         'id_beasiswa_detail',
-        'user_id_user',
+        'users_id',
         'beasiswa_id_beasiswa',
         'jenis_beasiswa',
-        'dokumen_beasiswa',
+        //'dokumen_beasiswa',
     ];
 
     protected $primaryKey = 'id_beasiswa_detail';

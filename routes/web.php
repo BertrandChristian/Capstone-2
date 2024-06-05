@@ -32,8 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/beasiswa/edit/{id}', [BeasiswaController::class, 'update'])->name('periodebs-update');
     Route::get('/beasiswa/delete/{id}', [BeasiswaController::class, 'destroy'])->name('periodebs-delete');
 
-    Route::get('/beasiswa_detail', [BeasiswaDetailController::class, 'index'])->name('beasiswa_detail-list');
-    Route::get('/bd-create', [BeasiswaDetailController::class, 'create'])->name('beasiswa_detail-create');
+    Route::get('/beasiswa_detail', [\App\Http\Controllers\BeasiswaDetailController::class, 'index'])->name('beasiswa_detail-list');
+    Route::get('/bd-create', [\App\Http\Controllers\BeasiswaDetailController::class, 'create'])->name('beasiswa_detail-create');
+    Route::post('/bd-create', [\App\Http\Controllers\BeasiswaDetailController::class, 'store'])->name('beasiswa_detail-store');
 });
 
 require __DIR__.'/auth.php';
