@@ -33,8 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/beasiswa/delete/{id}', [BeasiswaController::class, 'destroy'])->name('periodebs-delete');
 
     Route::get('/beasiswa_detail', [\App\Http\Controllers\BeasiswaDetailController::class, 'index'])->name('beasiswa_detail-list');
-    Route::get('/bd-create', [\App\Http\Controllers\BeasiswaDetailController::class, 'create'])->name('beasiswa_detail-create');
-    Route::post('/bd-create', [\App\Http\Controllers\BeasiswaDetailController::class, 'store'])->name('beasiswa_detail-store');
+    Route::get('/beasiswa_detail/create', [\App\Http\Controllers\BeasiswaDetailController::class, 'create'])->name('beasiswa_detail-create');
+    Route::post('/beasiswa_detail/create', [\App\Http\Controllers\BeasiswaDetailController::class, 'store'])->name('beasiswa_detail-store');
+    Route::get('/beasiswa_detail/edit/{id}', [\App\Http\Controllers\BeasiswaDetailController::class, 'edit'])->name('beasiswa_detail-edit');
+    Route::post('/beasiswa_detail/edit/{id}', [\App\Http\Controllers\BeasiswaDetailController::class, 'update'])->name('beasiswa_detail-update');
+    Route::get('/beasiswa_detail/delete/{id}', [\App\Http\Controllers\BeasiswaDetailController::class, 'destroy'])->name('beasiswa_detail-delete');
 });
 
 require __DIR__.'/auth.php';

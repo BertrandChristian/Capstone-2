@@ -67,7 +67,12 @@ class BeasiswaDetailController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $beasiswa = BeasiswaDetail::findOrFail($id);
+        return view('beasiswa_detail.edit', [
+            'beasiswa' => $beasiswa,
+            'users' => User::all(),
+            'bs' => Beasiswa::all(),
+        ]);
     }
 
     /**
@@ -75,7 +80,15 @@ class BeasiswaDetailController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData  = $request->validate([
+            'id_beasiswa_detail' => 'required|int',
+            'users_id' => '',
+            'beasiswa_id_beasiswa' => 'required',
+            'jenis_beasiswa' => 'required|string',
+        ]);
+        $beasiswa = BeasiswaDetail::findOrFail($id);
+        $beasiswa ->update($validatedData);
+        return redirect()->route('beasiswa_detail-list');
     }
 
     /**
@@ -83,6 +96,8 @@ class BeasiswaDetailController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $beasiswa = BeasiswaDetail::findOrFail($id);
+        $beasiswa->delete();
+        return redirect()->back();
     }
 }
