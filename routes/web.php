@@ -9,6 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+require __DIR__.'/auth.php';
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -18,12 +20,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/user', [UserController::class, 'index'])->name('user-list');
-    Route::get('/user/create', [UserController::class, 'create'])->name('user-create');
-    Route::post('/user/create', [UserController::class, 'store'])->name('user-store');
-    Route::get('/user-edit/{user}', [UserController::class, 'edit'])->name('user-edit');
-    Route::post('/user-edit/{user}', [UserController::class, 'update'])->name('user-update');
-    Route::get('/user-delete/{user}', [UserController::class, 'destroy'])->name('user-delete');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('/beasiswa', [BeasiswaController::class, 'index'])->name('periodebs-list');
+    Route::get('/beasiswa_detail', [\App\Http\Controllers\BeasiswaDetailController::class, 'index'])->name('beasiswa_detail-list');
+
 
     Route::get('/beasiswa', [BeasiswaController::class, 'index'])->name('periodebs-list');
     Route::get('/beasiswa/create', [BeasiswaController::class, 'create'])->name('periodebs-create');
@@ -40,5 +42,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/beasiswa_detail/delete/{id}', [\App\Http\Controllers\BeasiswaDetailController::class, 'destroy'])->name('beasiswa_detail-delete');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/user', [UserController::class, 'index'])->name('user-list');
+    Route::get('/user/create', [UserController::class, 'create'])->name('user-create');
+    Route::post('/user/create', [UserController::class, 'store'])->name('user-store');
+    Route::get('/user-edit/{user}', [UserController::class, 'edit'])->name('user-edit');
+    Route::post('/user-edit/{user}', [UserController::class, 'update'])->name('user-update');
+    Route::get('/user-delete/{user}', [UserController::class, 'destroy'])->name('user-delete');
+});
 

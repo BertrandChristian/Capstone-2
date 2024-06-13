@@ -33,7 +33,7 @@
                                     </div>
                                 @endif
 
-                                <form method="post" action="{{ route('beasiswa_detail-update', ['id'=>$beasiswa->id_beasiswa_detail]) }}">
+                                <form method="post" action="{{ route('beasiswa_detail-update', ['id'=>$beasiswa->id_beasiswa_detail]) }} " enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <label for="beasiswa-detail-id">ID</label>
@@ -63,9 +63,17 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="beasiswa-detail-jenis">Jenis</label>
-                                        <input type="text" class="form-control" id="beasiswa-detail-jenis"
-                                               placeholder="Contoh: Text" name="jenis_beasiswa" required autofocus
-                                               maxlength="100">
+                                        <select class="form-control" id="beasiswa-detail-jenis" name="jenis_beasiswa">
+                                            <option value="0" selected>--Jenis Beasiswa--</option>
+                                            <option value="Prestasi" name="jenis_beasiswa">Beasiswa Prestasi</option>
+                                            <option value="Ekonomi" name="jenis_beasiswa">Beasiswa Bantuan Ekonomi</option>
+                                        </select>
+                                    </div>
+                                    <div class ="form-group">
+                                        <label for="beasiswa-dokumen" class="col-form-label col-sm-2">Dokumen Beasiswa</label>
+                                        <div class="col-sm-4">
+                                            <input type="file" class="form-control-file" id="beasiswa-dokumen" name="dokumen_beasiswa" accept="application/pdf" required>
+                                        </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form>

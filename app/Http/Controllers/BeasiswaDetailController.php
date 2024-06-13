@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use function Laravel\Prompts\alert;
+use Illuminate\Support\Facades\Log;
 
 class BeasiswaDetailController extends Controller
 {
@@ -42,14 +43,16 @@ class BeasiswaDetailController extends Controller
     {
         $validatedData  = validator($request->all(), [
             'id_beasiswa_detail' => 'required|int',
-            'users_id' => '',
+            'users_id' => 'required',
             'beasiswa_id_beasiswa' => 'required',
             'jenis_beasiswa' => 'required|string',
+            'dokumen_beasiswa' => 'mimes:pdf|max:10000'
         ])->validate();
-        $data = $request->all();
+
+
+        $path = $request->file('dokumen_beasiswa')->store('dokumen', 'public');
         $beasiswa = new BeasiswaDetail($validatedData);
-        $beasiswa->users_id = $data['users_id'];
-        $beasiswa->beasiswa_id_beasiswa = $data['beasiswa_id_beasiswa'];
+        $beasiswa->dokumen_beasiswa = $path;
         $beasiswa -> save();
         return redirect()->route('beasiswa_detail-list');
     }

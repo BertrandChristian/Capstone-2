@@ -59,7 +59,7 @@
                                 <td>{{ $bd->users_id }}</td>
                                 <td>{{ $bd->beasiswa_id_beasiswa }}</td>
                                 <td>{{ $bd->jenis_beasiswa }}</td>
-                                <td>{{ $bd->dokumen_beasiswa }}</td>
+                                <td><a href="{{ Storage::url($bd->dokumen_beasiswa) }}" target="_blank">Download Dokumen</a></td>
                                 <td>
                                     <a href="{{ route('beasiswa_detail-edit', ['id' => $bd->id_beasiswa_detail]) }}" class="btn btn-warning" role="button"><i class="fas fa-edit"></i></a>
                                     <a href="{{ route('beasiswa_detail-delete', ['id' => $bd->id_beasiswa_detail]) }}" class="btn btn-danger del-button" role="button"><i class="fas fa-trash"></i></a>

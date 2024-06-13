@@ -48,6 +48,7 @@
                                             <option value="admin" {{ $user->role }} name="role">Admin</option>
                                             <option value="prodi" {{ $user->role === 'user' }} name="role">Program Studi</option>
                                             <option value="mahasiswa" {{ $user->role }} name="role">Mahasiswa</option>
+                                            <option value="fakultas" {{ $user->role }} name="role">Fakultas</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update</button>
